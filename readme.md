@@ -3,14 +3,19 @@ https://github.com/dm77/barcodescanner
 
 ###ZXing版本
    compile 'com.google.zxing:core:3.2.1'
-   
+
+###效果图
+![](https://raw.githubusercontent.com/yulongsun007/ZXingScan/master/screen.gif)
+
 ###问题：
 扫描之后到返回之前出现卡顿现象
 
 ###问题解决：
 1.主进程扫描获取图片
+
 2.子线程解析图像，将结果返回给主线程
-扫描解析是时间控制在100ms以内
+
+3.扫描解析是时间控制在100ms以内
 
 ###使用：
 1.布局设置
