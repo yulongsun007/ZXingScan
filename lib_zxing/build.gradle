@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.0"
@@ -23,4 +24,61 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.google.zxing:core:3.2.1'
+}
+
+
+version = "1.0.0"//发布的library的版本号,这个比较关键！！
+def siteUrl = 'https://github.com/yulongsun007/ZXingScan'      // Homepage URL of the library
+def gitUrl = 'https://github.com/yulongsun007/ZXingScan.git'   // Git repository URL
+group = "me.yulongsun"        // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'                // Add your description here
+                name 'ZXingScan'
+                description 'Android ZXing Library'
+                url siteUrl                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'yulongsun007'
+                        name 'yulongsun007'
+                        email 'yulongsun0425@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"        // it is the name that appears in bintray when logged
+        name = "ZXingScan"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }

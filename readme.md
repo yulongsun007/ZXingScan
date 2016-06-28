@@ -3,6 +3,9 @@ https://github.com/dm77/barcodescanner
 
 ###ZXing版本
    compile 'com.google.zxing:core:3.2.1'
+   
+###仓库地址
+   compile 'me.yulongsun:lib_zxing:1.0.0'
 
 ###效果图
 ![](https://raw.githubusercontent.com/yulongsun007/ZXingScan/master/screen.gif)
